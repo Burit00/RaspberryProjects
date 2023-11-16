@@ -1,14 +1,17 @@
 import gpiozero
 from time import sleep
 
-led = gpiozero.LED(14)
+led_red = gpiozero.LED(14)
+led_green = gpiozero.LED(15)
 
 
 def loop():
-    while(True):
-        led.on()
+    while True:
+        led_red.on()
+        led_green.off()
         sleep(1)
-        led.off()
+        led_red.off()
+        led_green.on()
         sleep(1)
 
 
