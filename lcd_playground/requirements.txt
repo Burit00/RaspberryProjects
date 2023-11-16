@@ -1,1 +1,1 @@
-gpiozero>=2.0
+RPLCD>=1.3

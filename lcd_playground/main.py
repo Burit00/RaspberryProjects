@@ -1,4 +1,4 @@
-from RPLCD import CharLCD
+from RPLCD.gpio import CharLCD
 
 # 1 : GND
 # 2 : 5V
