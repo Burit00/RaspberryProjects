@@ -1,4 +1,4 @@
-from RPi import GPIO
+import RPi.GPIO as GPIO
 from time import sleep
 
 # 1 : GND
@@ -34,11 +34,40 @@ LCD_D4 = 23
 LCD_D5 = 22
 LCD_D6 = 21
 LCD_D7 = 26
-# LCD_ON = 15
 
 # Timing constants
 E_PULSE = 0.00005
 E_DELAY = 0.00005
+
+def main():
+  # Main program block
+
+  # Initialise display
+  lcd_init()
+
+  # Send some centred test
+  lcd_byte(LCD_LINE_1, LCD_CMD)
+  lcd_string("Rasbperry Pi",2)
+  lcd_byte(LCD_LINE_2, LCD_CMD)
+  lcd_string("Model B",2)
+
+  sleep(3) # 3 second delay
+
+  # Send some left justified text
+  lcd_byte(LCD_LINE_1, LCD_CMD)
+  lcd_string("1234567890123456",1)
+  lcd_byte(LCD_LINE_2, LCD_CMD)
+  lcd_string("abcdefghijklmnop",1)
+
+  sleep(3) # 3 second delay
+
+  # Send some right justified text
+  lcd_byte(LCD_LINE_1, LCD_CMD)
+  lcd_string("Raspberrypi-spy",3)
+  lcd_byte(LCD_LINE_2, LCD_CMD)
+  lcd_string(".co.uk",3)
+
+  sleep(30)
 
 
 def lcd_init():
@@ -49,7 +78,6 @@ def lcd_init():
     GPIO.setup(LCD_D5, GPIO.OUT)  # D5
     GPIO.setup(LCD_D6, GPIO.OUT)  # D6
     GPIO.setup(LCD_D7, GPIO.OUT)  # D7
-    # GPIO.setup(LCD_ON, GPIO.OUT)    # Backlight enable
 
     lcd_byte(0x33, LCD_CMD)
     lcd_byte(0x32, LCD_CMD)
