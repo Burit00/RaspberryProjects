@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 from time import sleep
+from board_pinout import *
 
 # 1 : GND
 # 2 : 5V
@@ -27,13 +28,6 @@ LCD_CMD = False
 LCD_LINE_1 = 0x80
 LCD_LINE_2 = 0xC0
 
-# Define GPIO to LCD mapping
-LCD_RS = 25
-LCD_E = 24
-LCD_D4 = 23
-LCD_D5 = 22
-LCD_D6 = 21
-LCD_D7 = 26
 
 # Timing constants
 E_PULSE = 0.00005
@@ -55,39 +49,21 @@ def main():
 
     sleep(3)  # 3 second delay
 
-    # Send some centred test
-    print(1)
+    # Send some left justified text
+    print(2)
     lcd_byte(LCD_LINE_1, LCD_CMD)
-    lcd_string("Rasbperry Pi", 2)
+    lcd_string("1234567890123456", 1)
     lcd_byte(LCD_LINE_2, LCD_CMD)
-    lcd_string("Model B", 2)
+    lcd_string("abcdefghijklmnop", 1)
 
     sleep(3)  # 3 second delay
 
-    # Send some centred test
-    print(1)
+    # Send some right justified text
+    print(3)
     lcd_byte(LCD_LINE_1, LCD_CMD)
-    lcd_string("Rasbperry Pi", 2)
+    lcd_string("Raspberrypi-spy", 3)
     lcd_byte(LCD_LINE_2, LCD_CMD)
-    lcd_string("Model B", 2)
-
-    sleep(3)  # 3 second delay
-
-    # # Send some left justified text
-    # print(2)
-    # lcd_byte(LCD_LINE_1, LCD_CMD)
-    # lcd_string("1234567890123456", 1)
-    # lcd_byte(LCD_LINE_2, LCD_CMD)
-    # lcd_string("abcdefghijklmnop", 1)
-    #
-    # sleep(3)  # 3 second delay
-    #
-    # # Send some right justified text
-    # print(3)
-    # lcd_byte(LCD_LINE_1, LCD_CMD)
-    # lcd_string("Raspberrypi-spy", 3)
-    # lcd_byte(LCD_LINE_2, LCD_CMD)
-    # lcd_string(".co.uk", 3)
+    lcd_string(".co.uk", 3)
 
     sleep(3)
 

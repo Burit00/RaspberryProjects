@@ -1,1 +1,2 @@
 Rpi.GPIO>=0.7.1
+Adafruit-charlcd>=1.1.1
