@@ -28,11 +28,11 @@ LCD_LINE_2 = 0xC0
 
 # Define GPIO to LCD mapping
 LCD_RS = 26
-LCD_E = 19
+LCD_E = 16
 LCD_D4 = 13
 LCD_D5 = 6
 LCD_D6 = 5
-LCD_D7 = 11
+LCD_D7 = 12
 LCD_ON = 15
 
 # Timing constants
