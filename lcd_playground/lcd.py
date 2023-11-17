@@ -38,8 +38,8 @@ LCD_LINE_2 = 0xC0
 
 
 # Timing constants
-E_PULSE = 0.00005
-E_DELAY = 0.00005
+E_PULSE = 0.005
+E_DELAY = 0.005
 
 
 def main():
