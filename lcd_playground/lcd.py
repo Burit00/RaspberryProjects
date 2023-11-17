@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import gpiozero
 from time import sleep
 from board_pinout import *
 
@@ -20,6 +21,13 @@ from board_pinout import *
 # 16: LCD Backlight GND
 
 # Define device constants
+RS = gpiozero.LED(LCD_RS)
+E = gpiozero.LED(LCD_E)
+D4 = gpiozero.LED(LCD_D4)
+D5 = gpiozero.LED(LCD_D5)
+D6 = gpiozero.LED(LCD_D6)
+D7 = gpiozero.LED(LCD_D7)
+
 LCD_WIDTH = 16
 LCD_rows = 2
 LCD_CHR = True
@@ -36,6 +44,7 @@ E_DELAY = 0.00005
 
 def main():
     # Main program block
+
 
     # Initialise display
     lcd_init()
@@ -69,13 +78,13 @@ def main():
 
 
 def lcd_init():
-    GPIO.setmode(GPIO.BCM)  # Use BCM GPIO numbers
-    GPIO.setup(LCD_E, GPIO.OUT)  # E
-    GPIO.setup(LCD_RS, GPIO.OUT)  # RS
-    GPIO.setup(LCD_D4, GPIO.OUT)  # D4
-    GPIO.setup(LCD_D5, GPIO.OUT)  # D5
-    GPIO.setup(LCD_D6, GPIO.OUT)  # D6
-    GPIO.setup(LCD_D7, GPIO.OUT)  # D7
+    # GPIO.setmode(GPIO.BCM)  # Use BCM GPIO numbers
+    # GPIO.setup(LCD_E, GPIO.OUT)  # E
+    # GPIO.setup(LCD_RS, GPIO.OUT)  # RS
+    # GPIO.setup(LCD_D4, GPIO.OUT)  # D4
+    # GPIO.setup(LCD_D5, GPIO.OUT)  # D5
+    # GPIO.setup(LCD_D6, GPIO.OUT)  # D6
+    # GPIO.setup(LCD_D7, GPIO.OUT)  # D7
 
     lcd_byte(0x33, LCD_CMD)
     lcd_byte(0x32, LCD_CMD)
@@ -103,46 +112,71 @@ def lcd_byte(bits, mode):
     # mode = True  for character
     #        False for command
 
-    GPIO.output(LCD_RS, mode)  # RS
+    #GPIO.output(LCD_RS, mode)  # RS
+
+    if mode:
+        RS.on()
+    else:
+        RS.off()
 
     # High bits
-    GPIO.output(LCD_D4, False)
-    GPIO.output(LCD_D5, False)
-    GPIO.output(LCD_D6, False)
-    GPIO.output(LCD_D7, False)
+    D4.off()
+    # GPIO.output(LCD_D4, False)
+    D5.off()
+    # GPIO.output(LCD_D5, False)
+    D6.off()
+#     GPIO.output(LCD_D6, False)
+    D7.off()
+#     GPIO.output(LCD_D7, False)
     if bits & 0x10 == 0x10:
-        GPIO.output(LCD_D4, True)
+        D4.on()
+        # GPIO.output(LCD_D4, True)
     if bits & 0x20 == 0x20:
-        GPIO.output(LCD_D5, True)
+        D5.on()
+        # GPIO.output(LCD_D5, True)
     if bits & 0x40 == 0x40:
-        GPIO.output(LCD_D6, True)
+        D6.on()
+        # GPIO.output(LCD_D6, True)
     if bits & 0x80 == 0x80:
-        GPIO.output(LCD_D7, True)
+        D7.on()
+        # GPIO.output(LCD_D7, True)
 
     # Toggle 'Enable' pin
     sleep(E_DELAY)
-    GPIO.output(LCD_E, True)
+    E.on()
+    #GPIO.output(LCD_E, True)
     sleep(E_PULSE)
-    GPIO.output(LCD_E, False)
+    E.off()
+    #GPIO.output(LCD_E, False)
     sleep(E_DELAY)
 
     # Low bits
-    GPIO.output(LCD_D4, False)
-    GPIO.output(LCD_D5, False)
-    GPIO.output(LCD_D6, False)
-    GPIO.output(LCD_D7, False)
+    D4.off()
+    # GPIO.output(LCD_D4, False)
+    D5.off()
+    # GPIO.output(LCD_D5, False)
+    D6.off()
+#     GPIO.output(LCD_D6, False)
+    D7.off()
+#     GPIO.output(LCD_D7, False)
     if bits & 0x01 == 0x01:
+        D4.on()
         GPIO.output(LCD_D4, True)
     if bits & 0x02 == 0x02:
+        D5.on()
         GPIO.output(LCD_D5, True)
     if bits & 0x04 == 0x04:
+        D6.on()
         GPIO.output(LCD_D6, True)
     if bits & 0x08 == 0x08:
+        D7.on()
         GPIO.output(LCD_D7, True)
 
     # Toggle 'Enable' pin
     sleep(E_DELAY)
-    GPIO.output(LCD_E, True)
+    E.on()
+    #GPIO.output(LCD_E, True)
     sleep(E_PULSE)
-    GPIO.output(LCD_E, False)
+    E.off()
+    #GPIO.output(LCD_E, False)
     sleep(E_DELAY)
