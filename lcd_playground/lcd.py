@@ -62,6 +62,14 @@ def main():
 
     sleep(3)  # 3 second delay
 
+    # Send some right justified text
+    lcd_byte(LCD_LINE_1, LCD_CMD)
+    lcd_string("Raspberrypi-spy", 3)
+    lcd_byte(LCD_LINE_2, LCD_CMD)
+    lcd_string(".co.uk", 3)
+
+    sleep(3)
+
 
 def lcd_init():
     GPIO.setmode(GPIO.BCM)  # Use BCM GPIO numbers
