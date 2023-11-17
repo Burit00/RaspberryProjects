@@ -27,13 +27,13 @@ LCD_LINE_1 = 0x80
 LCD_LINE_2 = 0xC0
 
 # Define GPIO to LCD mapping
-LCD_RS = 26
-LCD_E = 16
-LCD_D4 = 13
-LCD_D5 = 6
-LCD_D6 = 5
-LCD_D7 = 12
-LCD_ON = 15
+LCD_RS = 25
+LCD_E = 24
+LCD_D4 = 23
+LCD_D5 = 22
+LCD_D6 = 21
+LCD_D7 = 26
+#LCD_ON = 15
 
 # Timing constants
 E_PULSE = 0.00005
@@ -48,7 +48,7 @@ def lcd_init():
     GPIO.setup(LCD_D5, GPIO.OUT)    # D5
     GPIO.setup(LCD_D6, GPIO.OUT)    # D6
     GPIO.setup(LCD_D7, GPIO.OUT)    # D7
-    GPIO.setup(LCD_ON, GPIO.OUT)    # Backlight enable
+    #GPIO.setup(LCD_ON, GPIO.OUT)    # Backlight enable
 
     lcd_byte(0x33, LCD_CMD)
     lcd_byte(0x32, LCD_CMD)
