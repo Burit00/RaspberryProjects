@@ -10,4 +10,4 @@ lcd = Adafruit_CharLCD(rs=LCD_RS, en=LCD_E,
                        )
 def main():
     lcd.clear()
-    lcd.message("Chuj do dupy!")
+    #lcd.message("Chuj do dupy!")
