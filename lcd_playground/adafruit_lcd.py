@@ -1,4 +1,4 @@
-from board_pinout import *
+from board_setup import *
 from Adafruit_CharLCD import Adafruit_CharLCD
 from time import sleep
 
@@ -13,6 +13,6 @@ lcd = Adafruit_CharLCD(rs=LCD_RS, en=LCD_E,
 
 while True:
     lcd.clear()
-    lcd.message("Chuj do dupy!\nNiech to zacznie działać")
+    lcd.message("Chuj do dupy!\nNiech to zacznie działać\nXDDDD")
     sleep(1)
 

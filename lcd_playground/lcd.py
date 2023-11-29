@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import gpiozero
 from time import sleep
-from board_pinout import *
+from board_setup import *
 
 # 1 : GND
 # 2 : 5V
@@ -38,8 +38,8 @@ LCD_LINE_2 = 0xC0
 
 
 # Timing constants
-E_PULSE = 0.005
-E_DELAY = 0.005
+E_PULSE = 0.0005
+E_DELAY = 0.0005
 
 
 def main():
@@ -56,7 +56,7 @@ def main():
     lcd_byte(LCD_LINE_2, LCD_CMD)
     lcd_string("Model B", 2)
 
-    sleep(3)  # 3 second delay
+    sleep(1)  # 3 second delay
 
     # Send some left justified text
     print(2)
@@ -65,7 +65,7 @@ def main():
     lcd_byte(LCD_LINE_2, LCD_CMD)
     lcd_string("abcdefghijklmnop", 1)
 
-    sleep(3)  # 3 second delay
+    sleep(1)  # 3 second delay
 
     # Send some right justified text
     print(3)
@@ -74,7 +74,7 @@ def main():
     lcd_byte(LCD_LINE_2, LCD_CMD)
     lcd_string(".co.uk", 3)
 
-    sleep(3)
+    sleep(1)
 
 
 def lcd_init():
